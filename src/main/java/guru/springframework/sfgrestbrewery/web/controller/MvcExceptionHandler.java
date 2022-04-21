@@ -1,5 +1,6 @@
 package guru.springframework.sfgrestbrewery.web.controller;
 
+import org.springframework.data.relational.core.sql.Not;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
@@ -30,5 +31,10 @@ public class MvcExceptionHandler {
     @ExceptionHandler(BindException.class)
     public ResponseEntity<List> handleBindException(BindException ex){
         return new ResponseEntity(ex.getAllErrors(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<String> handleNotFoundException(NotFoundException ex){
+        return new ResponseEntity("RESOURCE NOT FOUND", HttpStatus.NOT_FOUND);
     }
 }

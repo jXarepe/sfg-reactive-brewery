@@ -5,14 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.Id;
+/*import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+ */
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -22,17 +26,20 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+//@Entity
 public class Beer {
 
-    @Id
+    /*@Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Type(type="org.hibernate.type.UUIDCharType")
     @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
-    private UUID id;
+    */
 
-    @Version
+    @Id
+    private Integer id;
+
+    //@Version
     private Long version;
 
     private String beerName;
@@ -42,10 +49,10 @@ public class Beer {
     private Integer quantityOnHand;
     private BigDecimal price;
 
-    @CreationTimestamp
-    @Column(updatable = false)
-    private Timestamp createdDate;
+    //@CreationTimestamp
+    //@Column(updatable = false)
+    private LocalDateTime createdDate;
 
-    @UpdateTimestamp
-    private Timestamp lastModifiedDate;
+    //@UpdateTimestamp
+    private LocalDateTime lastModifiedDate;
 }
